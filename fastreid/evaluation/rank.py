@@ -106,7 +106,10 @@ def eval_market1501(distmat, q_pids, g_pids, q_camids, g_camids, max_rank):
         max_rank = num_g
         print('Note: number of gallery samples is quite small, got {}'.format(num_g))
 
-    indices = np.argsort(distmat, axis=1)
+    # indices = np.argsort(distmat, axis=1)
+    import torch
+    distmat = torch.from_numpy(distmat.astype(np.float16))
+    indices = torch.argsort(distmat, dim=1).numpy()
     # compute cmc curve for each query
     all_cmc = []
     all_AP = []
@@ -144,9 +147,16 @@ def eval_market1501(distmat, q_pids, g_pids, q_camids, g_camids, max_rank):
 
         # compute average precision
         # reference: https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)#Average_precision
+        # num_rel = raw_cmc.sum()
+        # tmp_cmc = raw_cmc.cumsum()
+        # tmp_cmc = [x / (i + 1.) for i, x in enumerate(tmp_cmc)]
+        # tmp_cmc = np.asarray(tmp_cmc) * raw_cmc
+        # AP = tmp_cmc.sum() / num_rel
+        # all_AP.append(AP)
         num_rel = raw_cmc.sum()
         tmp_cmc = raw_cmc.cumsum()
-        tmp_cmc = [x / (i + 1.) for i, x in enumerate(tmp_cmc)]
+        y = np.arange(1, tmp_cmc.shape[0] + 1) * 1.0
+        tmp_cmc = tmp_cmc / y
         tmp_cmc = np.asarray(tmp_cmc) * raw_cmc
         AP = tmp_cmc.sum() / num_rel
         all_AP.append(AP)

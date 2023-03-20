@@ -187,6 +187,9 @@ def main(args):
     cfg = setup(args)
 
     model = build_model(cfg)
+    import accelerate
+    accelerator = accelerate.Accelerator(mixed_precision="fp16")
+    model = accelerator.prepare(model)
     logger.info("Model:\n{}".format(model))
     if args.eval_only:
         cfg.defrost()

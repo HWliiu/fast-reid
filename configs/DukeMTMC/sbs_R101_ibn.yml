@@ -1,0 +1,14 @@
+_BASE_: ../Base-SBS.yml
+
+MODEL:
+  BACKBONE:
+    DEPTH: 101x
+    WITH_IBN: True
+  HEADS:
+    NUM_CLASSES: 702
+
+DATASETS:
+  NAMES: ("DukeMTMC",)
+  TESTS: ("DukeMTMC",)
+
+OUTPUT_DIR: logs/dukemtmc/sbs_R101-ibn

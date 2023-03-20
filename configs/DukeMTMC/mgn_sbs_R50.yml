@@ -1,0 +1,13 @@
+_BASE_: ../Base-MGN-SBS.yml
+
+MODEL:
+  BACKBONE:
+    WITH_IBN: False
+  HEADS:
+    NUM_CLASSES: 702
+
+DATASETS:
+  NAMES: ("DukeMTMC",)
+  TESTS: ("DukeMTMC",)
+
+OUTPUT_DIR: logs/dukemtmc/mgn_sbs_R50

@@ -111,11 +111,12 @@ class MGN(nn.Module):
         res_conv4 = nn.Sequential(*all_blocks.layer3[1:])
         res_g_conv5 = all_blocks.layer4
 
-        res_p_conv5 = nn.Sequential(
-            Bottleneck(1024, 512, bn_norm, False, with_se, downsample=nn.Sequential(
-                nn.Conv2d(1024, 2048, 1, bias=False), get_norm(bn_norm, 2048))),
-            Bottleneck(2048, 512, bn_norm, False, with_se),
-            Bottleneck(2048, 512, bn_norm, False, with_se))
+        # res_p_conv5 = nn.Sequential(
+        #     Bottleneck(1024, 512, bn_norm, False, with_se, downsample=nn.Sequential(
+        #         nn.Conv2d(1024, 2048, 1, bias=False), get_norm(bn_norm, 2048))),
+        #     Bottleneck(2048, 512, bn_norm, False, with_se),
+        #     Bottleneck(2048, 512, bn_norm, False, with_se))
+        res_p_conv5 = copy.deepcopy(all_blocks.layer4)
         res_p_conv5.load_state_dict(all_blocks.layer4.state_dict())
 
         # branch

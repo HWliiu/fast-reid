@@ -32,7 +32,7 @@ class ReidEvaluator(DatasetEvaluator):
         self._cpu_device = torch.device('cpu')
 
         self._predictions = []
-        self._compile_dependencies()
+        # self._compile_dependencies()
 
     def reset(self):
         self._predictions = []
@@ -112,7 +112,8 @@ class ReidEvaluator(DatasetEvaluator):
             self._results['Rank-{}'.format(r)] = cmc[r - 1] * 100
         self._results['mAP'] = mAP * 100
         self._results['mINP'] = mINP * 100
-        self._results["metric"] = (mAP + cmc[0]) / 2 * 100
+        # self._results["metric"] = (mAP + cmc[0]) / 2 * 100
+        self._results["metric"] = mAP * 100
 
         if self.cfg.TEST.ROC.ENABLED:
             from .roc import evaluate_roc

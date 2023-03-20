@@ -1,0 +1,14 @@
+_BASE_: ../Base-bagtricks.yml
+
+MODEL:
+  BACKBONE:
+    NAME: build_inception_resnet_v2_backbone
+    FEAT_DIM: 1536
+  HEADS:
+    NUM_CLASSES: 1041
+
+DATASETS:
+  NAMES: ("MSMT17",)
+  TESTS: ("MSMT17",)
+
+OUTPUT_DIR: logs/msmt17/bagtricks_inception_resnet_v2

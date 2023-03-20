@@ -1,0 +1,13 @@
+_BASE_: ../Base-MGN.yml
+
+MODEL:
+  BACKBONE:
+    WITH_IBN: True
+  HEADS:
+    NUM_CLASSES: 702
+
+DATASETS:
+  NAMES: ("DukeMTMC",)
+  TESTS: ("DukeMTMC",)
+
+OUTPUT_DIR: logs/dukemtmc/mgn_R50_ibn

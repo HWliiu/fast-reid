@@ -1,0 +1,17 @@
+_BASE_: ../Base-MGN.yml
+
+MODEL:
+  BACKBONE:
+    NAME: build_resnest_backbone
+    WITH_IBN: True
+  HEADS:
+    NUM_CLASSES: 1041
+
+DATASETS:
+  NAMES: ("MSMT17",)
+  TESTS: ("MSMT17",)
+
+# SOLVER:
+#   IMS_PER_BATCH: 56
+
+OUTPUT_DIR: logs/msmt17/mgn_S50_ibn

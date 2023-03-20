@@ -22,6 +22,7 @@ MODEL:
     POOL_LAYER: Identity
     NECK_FEAT: before
     CLS_LAYER: Linear
+    NUM_CLASSES: 751
 
   LOSSES:
     NAME: ("CrossEntropyLoss", "TripletLoss",)

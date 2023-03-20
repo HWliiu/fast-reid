@@ -1,0 +1,14 @@
+_BASE_: ../Base-bagtricks.yml
+
+MODEL:
+  BACKBONE:
+    WITH_SE: True
+    PRETRAIN_PATH: /home/lhw/.cache/torch/hub/checkpoints/seresnet50_ra_224-8efdb4bb.pth
+  HEADS:
+    NUM_CLASSES: 751
+
+DATASETS:
+  NAMES: ("Market1501",)
+  TESTS: ("Market1501",)
+
+OUTPUT_DIR: logs/market1501/bagtricks_SeR50

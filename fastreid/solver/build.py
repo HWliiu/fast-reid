@@ -205,7 +205,7 @@ def build_optimizer(cfg, model, contiguous=True):
         return maybe_add_freeze_layer(
             cfg,
             maybe_add_gradient_clipping(cfg, getattr(torch.optim, solver_opt))
-        )(params.contiguous() if contiguous else params), params
+        )(params.contiguous() if contiguous else params)
 
 
 def get_default_optimizer_params(

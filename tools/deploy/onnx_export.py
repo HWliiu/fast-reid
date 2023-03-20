@@ -11,7 +11,7 @@ import io
 import sys
 
 import onnx
-import onnxoptimizer
+# import onnxoptimizer
 import torch
 from onnxsim import simplify
 from torch.onnx import OperatorExportTypes
@@ -60,7 +60,7 @@ def get_parser():
     )
     parser.add_argument(
         '--batch-size',
-        default=1,
+        default=256,
         type=int,
         help="the maximum batch size of onnx runtime"
     )
@@ -127,12 +127,12 @@ def export_onnx_model(model, inputs):
     logger.info("Completed convert of ONNX model")
 
     # Apply ONNX's Optimization
-    logger.info("Beginning ONNX model path optimization")
-    all_passes = onnxoptimizer.get_available_passes()
-    passes = ["extract_constant_to_initializer", "eliminate_unused_initializer", "fuse_bn_into_conv"]
-    assert all(p in all_passes for p in passes)
-    onnx_model = onnxoptimizer.optimize(onnx_model, passes)
-    logger.info("Completed ONNX model path optimization")
+    # logger.info("Beginning ONNX model path optimization")
+    # all_passes = onnxoptimizer.get_available_passes()
+    # passes = ["extract_constant_to_initializer", "eliminate_unused_initializer", "fuse_bn_into_conv"]
+    # assert all(p in all_passes for p in passes)
+    # onnx_model = onnxoptimizer.optimize(onnx_model, passes)
+    # logger.info("Completed ONNX model path optimization")
     return onnx_model
 
 

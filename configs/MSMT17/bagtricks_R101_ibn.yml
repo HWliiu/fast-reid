@@ -1,0 +1,15 @@
+_BASE_: ../Base-bagtricks.yml
+
+MODEL:
+  BACKBONE:
+    DEPTH: 101x
+    WITH_IBN: True
+  HEADS:
+    NUM_CLASSES: 1041
+
+DATASETS:
+  NAMES: ("MSMT17",)
+  TESTS: ("MSMT17",)
+
+OUTPUT_DIR: logs/msmt17/bagtricks_R101-ibn
+

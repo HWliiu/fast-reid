@@ -1,5 +1,9 @@
 _BASE_: ../Base-SBS.yml
 
+MODEL:
+  HEADS:
+    NUM_CLASSES: 751
+
 DATASETS:
   NAMES: ("Market1501",)
   TESTS: ("Market1501",)

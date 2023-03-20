@@ -351,6 +351,18 @@ def build_resnet_backbone(cfg):
 
             state_dict = init_pretrained_weights(key)
 
+        model_state_dict = model.state_dict()
+        incorrect_shapes = []
+        for k in list(state_dict.keys()):
+            if k in model_state_dict:
+                shape_model = tuple(model_state_dict[k].shape)
+                shape_checkpoint = tuple(state_dict[k].shape)
+                if shape_model != shape_checkpoint:
+                    incorrect_shapes.append((k, shape_checkpoint, shape_model))
+                    state_dict.pop(k)
+            else:
+                state_dict.pop(k)
+
         incompatible = model.load_state_dict(state_dict, strict=False)
         if incompatible.missing_keys:
             logger.info(

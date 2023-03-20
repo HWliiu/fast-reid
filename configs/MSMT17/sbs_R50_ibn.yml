@@ -1,0 +1,13 @@
+_BASE_: ../Base-SBS.yml
+
+MODEL:
+  BACKBONE:
+    WITH_IBN: True
+  HEADS:
+    NUM_CLASSES: 1041
+
+DATASETS:
+  NAMES: ("MSMT17",)
+  TESTS: ("MSMT17",)
+
+OUTPUT_DIR: logs/msmt17/sbs_R50-ibn

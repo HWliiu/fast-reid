@@ -196,6 +196,7 @@ def get_norm(norm, out_channels, **kwargs):
         if len(norm) == 0:
             return None
         norm = {
+            "IN": nn.InstanceNorm2d,
             "BN": BatchNorm,
             "syncBN": SyncBatchNorm,
             "GhostBN": GhostBatchNorm,

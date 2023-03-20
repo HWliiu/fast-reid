@@ -1,5 +1,9 @@
 _BASE_: ../Base-bagtricks.yml
 
+MODEL:
+  HEADS:
+    NUM_CLASSES: 1041
+
 DATASETS:
   NAMES: ("MSMT17",)
   TESTS: ("MSMT17",)

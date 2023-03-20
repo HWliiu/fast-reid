@@ -1,0 +1,15 @@
+_BASE_: ../Base-bagtricks.yml
+
+MODEL:
+  BACKBONE:
+    NAME: build_densenet_backbone
+    DEPTH: 121x
+    FEAT_DIM: 1024
+  HEADS:
+    NUM_CLASSES: 1041
+
+DATASETS:
+  NAMES: ("MSMT17",)
+  TESTS: ("MSMT17",)
+
+OUTPUT_DIR: logs/msmt17/bagtricks_densenet121

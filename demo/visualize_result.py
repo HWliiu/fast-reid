@@ -10,12 +10,13 @@ import sys
 
 import numpy as np
 import torch
+import torch.nn.functional as F
 import tqdm
 from torch.backends import cudnn
 
 sys.path.append('.')
 
-from fastreid.evaluation import evaluate_rank
+from fastreid.evaluation.rank import evaluate_rank
 from fastreid.config import get_cfg
 from fastreid.utils.logger import setup_logger
 from fastreid.data import build_reid_test_loader
@@ -123,7 +124,7 @@ if __name__ == '__main__':
     g_camids = np.asarray(camids[num_query:])
 
     # compute cosine distance
-    distmat = 1 - torch.mm(q_feat, g_feat.t())
+    distmat = 1 - torch.mm(F.normalize(q_feat), F.normalize(g_feat).t())
     distmat = distmat.numpy()
 
     logger.info("Computing APs for all query images ...")

@@ -1,5 +1,9 @@
 _BASE_: ../Base-SBS.yml
 
+MODEL:
+  HEADS:
+    NUM_CLASSES: 702
+
 DATASETS:
   NAMES: ("DukeMTMC",)
   TESTS: ("DukeMTMC",)

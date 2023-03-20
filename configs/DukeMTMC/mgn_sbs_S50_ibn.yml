@@ -1,0 +1,17 @@
+_BASE_: ../Base-MGN-SBS.yml
+
+MODEL:
+  BACKBONE:
+    NAME: build_resnest_backbone
+    WITH_IBN: True
+  HEADS:
+    NUM_CLASSES: 702
+
+DATASETS:
+  NAMES: ("DukeMTMC",)
+  TESTS: ("DukeMTMC",)
+
+# SOLVER:
+#   IMS_PER_BATCH: 56
+
+OUTPUT_DIR: logs/dukemtmc/mgn_sbs_S50_ibn
